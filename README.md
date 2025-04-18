@@ -17,7 +17,35 @@ npm run dev
 
 Ao clicar no link e abrir a pagina web: ![image](https://github.com/user-attachments/assets/984871ba-5780-47b0-a653-3bda4dc43393)
 
-7. Dentro do VsCode posso instalar o ESLint, ele aponta os erros e o que não está sendo usado. 
+7. Dentro do VsCode posso instalar o ESLint, ele aponta os erros e o que não está sendo usado.
+8. Crio um arqivo chamado App.jsx para linkar a pagina login:
+   
+   ![image](https://github.com/user-attachments/assets/26cde95d-02b5-43f1-b06b-e228435fc84a)
+
+9- Crio um arquivo chamado main.jsx para linkar o react; global.css e o app.jsx:
+
+![image](https://github.com/user-attachments/assets/061cf907-a01a-4565-b1b4-23fcfa5c12e8)
+
+10- Dentro da pasta SRC crio outra pasta chamada pages e acrescento dois arquivos: chat e login
+  10.1- Dentro do arquivo login crio dois arquivos: index:jsx e login.css
+  10.2- Devo linkar o CSS; importar as imagens e linkar com o meu react.
+  
+  ![image](https://github.com/user-attachments/assets/f08cd7eb-a660-4585-b93a-657a02db04a7)
+
+   10.3- Inserir todas as informações do react.js, lembrando que dentro () do useState devo usar "" para o arquivo não dar indefirido.
+
+   ![image](https://github.com/user-attachments/assets/35d9dc89-4a03-4e24-8a7d-d637af444520)
+
+   10.4- Dentro do arquivo index.jsx devo colocar todo o meu arquivo HTML/JavaScript
+
+   ![image](https://github.com/user-attachments/assets/f57dc22a-161a-477b-abaf-acaf781e1e96)
+
+
+
+
+  
+
+
 
 
 

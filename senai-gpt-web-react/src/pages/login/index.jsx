@@ -2,31 +2,56 @@ import "./login.css";
 import logo from "../../assets/imgs/Chat.png";
 import { useState } from "react";
 
+// front@rmail.com
+//frontdomina
 function Login() {
 
-  const [email, setEmail] = useState ("");
-  const [password, setPassoword] = useState ("");
+  const [email, setEmail] = useState("");
+  const [password, setPassoword] = useState("");
 
   const onLoginClick = async () => {
 
 
-    let response = await fetch ("https://senai-gpt-api.azurewebsites.net/login", {
+    let response = await fetch("https://senai-gpt-api.azurewebsites.net/login", {
 
       headers: {
-        "Content-Type" : "application/json"
+        "Content-Type": "application/json"
       },
       method: "POST", //Método que envia dados
-      body: JSON.stringify  ({ //quem define é o back-end
-        email: email, 
+      body: JSON.stringify({ //quem define é o back-end
+        email: email,
         password: password //não precisa de virgula porque é a ultima propriedade
       })
 
-    }); 
+    });
 
-    console.log (response);
+    if (response.ok == true) {
 
+      alert("Login realizado com sucesso!");
+
+      console.log(response);
+
+      let json = await response.json();
+
+      let token = json.accessToken;
+
+      console.log("Token:" + token);
+
+      localStorage.setItem("meuToken", token)
+
+      window.location.href = "/chat";
+
+    } else {
+
+      if (response.status == 401) {
+        alert("Credenciais incorretas. Tente novamente.");
+      } else {
+
+        alert("Erro inesperado aconteceu, caso persista contate os administradores.");
+      }
+
+    }
   }
-
 
   return (
     <>
@@ -42,7 +67,7 @@ function Login() {
           <img className="logo" src={logo} alt="Logo do SeniaGPT." />
 
           <h1
-           
+
             id="meutitulo"
             className="titulo"
           >Login</h1>
@@ -55,7 +80,7 @@ function Login() {
         </div>
 
       </main>
- 
+
       <footer></footer>
     </>
   )

@@ -2,7 +2,7 @@ import "./login.css";
 import logo from "../../assets/imgs/Chat.png";
 import { useState } from "react";
 
-// front@rmail.com
+// front@email.com
 //frontdomina
 function Login() {
 

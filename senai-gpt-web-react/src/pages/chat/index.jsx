@@ -138,8 +138,61 @@ function Chat() {
         novoChatSelecionado.messages.push(respostaNaTela);  //push serve para colocar os itens na lista
         setChatSelecionado(novoChatSelecionado);
 
+        let response = await fetch("https://senai-gpt-api.azurewebsites.net/chats/" + chatSelecionado.id, {
+            method: "PUT",
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("meuToken"),
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(
+                novoChatSelecionado
+            )
+
+        });
+
+        if (response.ok == false) {
+
+            console.log("Salvar o chat deu errado.");
+        }
+
 
     }
+
+
+    const novoChat = async () => {
+        let novoTitulo = prompt("Digite o nome do novo chat:");
+        if (novoTitulo == null || novoTitulo == "") { // se titulo for nulo ou vazio.
+            alert("Insira um titulo");
+            return;
+        }
+
+        let userId = localStorage.getItem("meuId");
+
+        let nChat = {
+
+            chatTitle: novoTitulo,
+            id: crypto.randomUUID(),
+            userId: userId,
+            messages: []
+        }
+
+        let response = await fetch("https://senai-gpt-api.azurewebsites.net/chats", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("meuToken")
+            },
+            body: JSON.stringify(nChat)
+        });
+
+        if (response.ok) {
+            //atualiza os chats na tela
+            await getChats();
+        }
+
+    }
+
+
 
     return (
         <>
@@ -149,7 +202,7 @@ function Chat() {
 
                     <div className="top">
 
-                        <button className="btn-new-chat">+ New chat</button>
+                        <button className="btn-new-chat" onClick={() => novoChat()}>+ New chat</button>
 
                         {chats.map(chat => (
                             <button className="btn-chat" onClick={() => clickChat(chat)}>

@@ -24,7 +24,7 @@ function Chat() {
 
     const getChats = async () => {
         // Arrow Function
-        let response = await fetch("https://senai-gpt-api.azurewebsites.net/chats", {
+        let response = await fetch("https://senai-gpt-api.up.railway.app/chats", {
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("meuToken")
             }
@@ -36,7 +36,12 @@ function Chat() {
 
             let json = await response.json(); // Pegue as informações dos chats.
 
+            let userId = localStorage.getItem ("meuId");
+
+            json = json.filter (chat => chat.userId == userId);
+
             setChats(json);
+
 
         } else {
 
@@ -67,6 +72,8 @@ function Chat() {
     }
 
     const chatGPT = async (message) => {
+
+        return "[IA desativada]";
 
         // Configurações do endpoint e chave da API
         const endpoint = "https://ai-testenpl826117277026.openai.azure.com/";
@@ -138,7 +145,7 @@ function Chat() {
         novoChatSelecionado.messages.push(respostaNaTela);  //push serve para colocar os itens na lista
         setChatSelecionado(novoChatSelecionado);
 
-        let response = await fetch("https://senai-gpt-api.azurewebsites.net/chats/" + chatSelecionado.id, {
+        let response = await fetch("https://senai-gpt-api.up.railway.app/chats" + chatSelecionado.id, {
             method: "PUT",
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("meuToken"),
@@ -176,7 +183,7 @@ function Chat() {
             messages: []
         }
 
-        let response = await fetch("https://senai-gpt-api.azurewebsites.net/chats", {
+        let response = await fetch("https://senai-gpt-api.up.railway.app/chats", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -9,7 +9,7 @@ function Login() {
 
     const onLoginClick = async () => {
 
-        let response = await fetch ("https://senai-gpt-api.azurewebsites.net/login", {
+        let response = await fetch("https://senai-gpt-api.up.railway.app/login", {
 
             headers: {
                 "Content-Type": "application/json"
@@ -57,7 +57,7 @@ function Login() {
                 alert("Credenciais incorretas. Tente novamente.");
 
             } else {
-                
+
                 alert("Erro inesperado aconteceu, caso persista, contate os administradores.");
 
             }
@@ -87,7 +87,8 @@ function Login() {
                     <input className="inpt" value={email} onChange={event => setEmail(event.target.value)} type="email" placeholder="Insira o e-mail" />
                     <input className="inpt" value={password} onChange={event => setPassword(event.target.value)} type="password" placeholder="Insira a senha" />
 
-                    <button className="btn" onClick={() => onLoginClick()}>Entrar</button>
+                    <button className="btn" onClick={() => onLoginClick()}>Entrar</button> <br/>
+                    <a className="form-hint" href="/new-user">Clique aqui para fazer o Cadastro</a>
 
                 </div>
 
@@ -99,3 +100,5 @@ function Login() {
 }
 
 export default Login;
+
+

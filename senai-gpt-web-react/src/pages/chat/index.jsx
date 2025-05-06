@@ -14,6 +14,8 @@ function Chat() {
 
     const [userMessage, setUserMessage] = useState("");
 
+    const [isLeftPanelOpen, setIsLeftPanelOpen] = useState(false);
+
     useEffect(() => {
 
         // Executada toda vez que a tela abre.
@@ -36,9 +38,9 @@ function Chat() {
 
             let json = await response.json(); // Pegue as informações dos chats.
 
-            let userId = localStorage.getItem ("meuId");
+            let userId = localStorage.getItem("meuId");
 
-            json = json.filter (chat => chat.userId == userId);
+            json = json.filter(chat => chat.userId == userId);
 
             setChats(json);
 
@@ -205,134 +207,139 @@ function Chat() {
         <>
             <div className="container">
 
-                <header className="left-panel">
-
+                <button
+                    className="btn-toggle-panel"
+                    onClick={() => setIsLeftPanelOpen(true)}
+                >
+                    ☰
+                </button>
+                <header className={`left-panel &{isLeftPanelOpen == true ? "open": "" }`}>
                     <div className="top">
 
-                        <button className="btn-new-chat" onClick={() => novoChat()}>+ New chat</button>
+                    <button className="btn-new-chat" onClick={() => novoChat()}>+ New chat</button>
 
-                        {chats.map(chat => (
-                            <button className="btn-chat" onClick={() => clickChat(chat)}>
-                                <img src={chatIcon} alt="ícone de chat." />
-                                {chat.chatTitle}
-                            </button>
-                        ))}
+                    {chats.map(chat => (
+                        <button className="btn-chat" onClick={() => clickChat(chat)}>
+                            <img src={chatIcon} alt="ícone de chat." />
+                            {chat.chatTitle}
+                        </button>
+                    ))}
 
-                    </div>
+                </div>
 
-                    <div className="bottom">
+                <div className="bottom">
 
-                        <button className="btn-chat">Clear conversations</button>
-                        <button className="btn-chat">Light mode</button>
-                        <button className="btn-chat">My account</button>
-                        <button className="btn-chat">Updates & FAQ</button>
-                        <button className="btn-chat" onClick={() => onLogOutClick()}>Log out</button>
+                    <button className="btn-chat">Clear conversations</button>
+                    <button className="btn-chat">Light mode</button>
+                    <button className="btn-chat">My account</button>
+                    <button className="btn-chat">Updates & FAQ</button>
+                    <button className="btn-chat" onClick={() => onLogOutClick()}>Log out</button>
 
-                    </div>
+                </div>
 
-                </header>
+            </header>
 
-                <main className="central-panel">
+            <main className="central-panel">
 
-                    {chatSelecionado == null && (
+                {chatSelecionado == null && (
 
-                        <>
+                    <>
 
-                            <div className="chat-logo">
-                                <img src={logo} alt="Logo do SenaiGPT." />
-                            </div>
+                        <div className="chat-logo">
+                            <img src={logo} alt="Logo do SenaiGPT." />
+                        </div>
 
-                            <div className="dicas-container">
+                        <div className="dicas-container">
 
-                                <div className="dicas-item">
+                            <div className="dicas-item">
 
-                                    <h2>
-                                        <img src={example} alt="Example icon." />
-                                        Examples
-                                    </h2>
+                                <h2>
+                                    <img src={example} alt="Example icon." />
+                                    Examples
+                                </h2>
 
-                                    <p>Explique como um computador quântico funciona.</p>
-                                    <p>Explique como um computador quântico funciona.</p>
-                                    <p>Explique como um computador quântico funciona.</p>
-
-                                </div>
-
-                                <div className="dicas-item">
-
-                                    <h2>
-                                        <img src={example} alt="Example icon." />
-                                        Examples
-                                    </h2>
-
-                                    <p>Explique como um computador quântico funciona.</p>
-                                    <p>Explique como um computador quântico funciona.</p>
-                                    <p>Explique como um computador quântico funciona.</p>
-
-                                </div>
-
-                                <div className="dicas-item">
-
-                                    <h2>
-                                        <img src={example} alt="Example icon." />
-                                        Examples
-                                    </h2>
-
-                                    <p>Explique como um computador quântico funciona.</p>
-                                    <p>Explique como um computador quântico funciona.</p>
-                                    <p>Explique como um computador quântico funciona.</p>
-
-                                </div>
+                                <p>Explique como um computador quântico funciona.</p>
+                                <p>Explique como um computador quântico funciona.</p>
+                                <p>Explique como um computador quântico funciona.</p>
 
                             </div>
 
-                        </>
+                            <div className="dicas-item">
 
-                    )}
+                                <h2>
+                                    <img src={example} alt="Example icon." />
+                                    Examples
+                                </h2>
 
-                    {chatSelecionado != null && (
-
-                        <>
-
-                            <div className="chat-container">
-
-                                <div className="chat-header">
-
-                                    <h2>{chatSelecionado.chatTitle}</h2>
-
-                                </div>
-
-                                <div className="chat-messages">
-
-                                    {chatSelecionado.messages.map(message => (
-                                        <p className={"message-item " + (message.userId == "chatbot" ? "chatbot" : "")}>{message.text}</p>
-                                    ))}
-
-                                </div>
+                                <p>Explique como um computador quântico funciona.</p>
+                                <p>Explique como um computador quântico funciona.</p>
+                                <p>Explique como um computador quântico funciona.</p>
 
                             </div>
 
-                        </>
+                            <div className="dicas-item">
 
-                    )}
+                                <h2>
+                                    <img src={example} alt="Example icon." />
+                                    Examples
+                                </h2>
 
-                    <div className="input-container-1">
+                                <p>Explique como um computador quântico funciona.</p>
+                                <p>Explique como um computador quântico funciona.</p>
+                                <p>Explique como um computador quântico funciona.</p>
 
-                        <img src={micIcon} alt="Microphone." />
-                        <img src={imageIcon} alt="Image." />
+                            </div>
 
-                        <input
-                            value={userMessage}
-                            onChange={event => setUserMessage(event.target.value)} placeholder="Type a message."
-                            type="text"
-                        />
+                        </div>
 
-                        <img onClick={() => enviarMensagem(userMessage)} src={sendIcon} alt="Send." />
+                    </>
 
-                    </div>
+                )}
 
-                </main>
+                {chatSelecionado != null && (
 
-            </div>
+                    <>
+
+                        <div className="chat-container">
+
+                            <div className="chat-header">
+
+                                <h2>{chatSelecionado.chatTitle}</h2>
+
+                            </div>
+
+                            <div className="chat-messages">
+
+                                {chatSelecionado.messages.map(message => (
+                                    <p className={"message-item " + (message.userId == "chatbot" ? "chatbot" : "")}>{message.text}</p>
+                                ))}
+
+                            </div>
+
+                        </div>
+
+                    </>
+
+                )}
+
+                <div className="input-container-1">
+
+                    <img src={micIcon} alt="Microphone." />
+                    <img src={imageIcon} alt="Image." />
+
+                    <input
+                        value={userMessage}
+                        onChange={event => setUserMessage(event.target.value)} placeholder="Type a message."
+                        type="text"
+                    />
+
+                    <img onClick={() => enviarMensagem(userMessage)} src={sendIcon} alt="Send." />
+
+                </div>
+
+            </main>
+
+        </div >
         </>
     )
 

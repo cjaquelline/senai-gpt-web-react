@@ -40,3 +40,15 @@ h1 {
     height: 100vh;
 
 }
+
+
+@media screen and (max-width:768px) {
+
+    .titulo {
+        color: white;
+        font-size: 55px;
+
+    }
+
+
+}

@@ -53,6 +53,10 @@ h1 {
 
 }
 
+.btn-toggle-panel{
+    display: none;
+}
+
 @media screen and (max-width:768px) { 
     /* Celular */
 
@@ -95,13 +99,15 @@ h1 {
     }
 
     .central-panel {
-        width: 100vw;
+        width: 100vw !important;
 
     }
 
     .btn-toggle-panel {
 
         z-index: 2;
+
+        display: block;
 
         /* display: flex; */
         width: 50px;
@@ -116,8 +122,25 @@ h1 {
         bottom: 120px;
 
         font-size: 25px;
-        background-color: white;
+        background-color: rgb(250, 168, 168);
 
+    }
+
+    .chat-logo img {
+        justify-content: center;
+        width: 70vw !important;
+        display: flex;
+        
+    }
+
+    .chat-logo {
+        margin-top: auto !important;
+    }
+
+    .dicas-container {
+        max-width: 76vw !important;
+        margin-top: 90px !important;
+        font-size: small;
     }
 
 

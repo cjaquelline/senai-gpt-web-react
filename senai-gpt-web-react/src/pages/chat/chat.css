@@ -215,3 +215,13 @@
 }
 
 
+
+/* DarkMode*/
+
+
+body.dark-mode .left-panel { /*Quando tiver dark-mode no boddy, ele irá até o painel e inverterá a cor */
+
+    background-color: black;
+    
+}
+
